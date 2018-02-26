@@ -5,7 +5,14 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
 
 abstract class BaseSeeder extends Seeder {
+
+    protected $total = 50;
     protected static $pool = array();
+
+    public function run()
+    {
+        $this->createMultiple($this->total);
+    }
 
     protected function createMultiple($total, array $customValues = array())
     {
@@ -52,7 +59,6 @@ abstract class BaseSeeder extends Seeder {
         static::$pool[$class]->add($entity);
         return $entity;
     }
-
     
     private function collectionExist($class)
     {
